@@ -1,6 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:parafeed/common/app_button.dart';
+import 'package:parafeed/common/app_color.dart';
+import 'package:parafeed/common/custom_text_field.dart';
+import 'package:parafeed/common/textstyle.dart';
+import 'package:parafeed/screens/home_screen.dart';
 import 'package:parafeed/screens/sign_up.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,8 +18,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
 
   bool isPassHide = true;
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController(text: kDebugMode ? "admin@gmail.com": null);
+  final TextEditingController passwordController = TextEditingController(text: kDebugMode ? "123456" : null);
   String validEmail = "admin@gmail.com";
   String validPassword = "123456";
 
@@ -38,89 +43,84 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Login", style: GoogleFonts.poppins(color: Color(0XFF648DDB), fontSize: 30, fontWeight: FontWeight.w600) ),
+                    Text("Login", style: littleDarkTextStyle(fontSize: 34,color: primary)),
                   ],
                 ),
 
-                Text("Your Email", style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w600) ),
+                CustomTextField(
+                    hintText: "Enter Your Email",
+                    labelText: "Email",
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    prefixIcon: Icons.email,
+                ),
+                CustomTextField(
+                    isPassword: isPassHide,
+                    hintText: "Enter your password",
+                    labelText: "Password",
+                    controller: passwordController,
+                    keyboardType: TextInputType.emailAddress,
+                    prefixIcon: Icons.lock,
+                    suffixIcon: isPassHide ? Icons.visibility_off : Icons.visibility,
+                    onClickSuffix: (){
+                      setState(() {
+                        isPassHide = !isPassHide;
+                      });
+                  }
 
-                TextField(
-                  controller: emailController,
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Enter Your Email',
-                    border: OutlineInputBorder(),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
                 ),
 
-                Text("Password", style: GoogleFonts.inter(fontSize: 20, fontWeight: FontWeight.w600) ),
-
-                TextField(
-                  controller: passwordController,
-                  obscureText: isPassHide,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    hintText: 'Enter your password',
-                    border: OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          isPassHide = !isPassHide;
-                        });
-                      },
-                      icon: Icon(isPassHide ? Icons.visibility_off : Icons.visibility),
-                    ),
-                  ),
-                ),
 
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: SizedBox(
                     width: double.infinity,
                     height: 55,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        final email = emailController.text.trim();
-                        final password = passwordController.text.trim();
-                        print("email :: $email pass :: $password");
-                        if(email.isEmpty || password.isEmpty){
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text("email and password must be not empty"),
-                                backgroundColor: Colors.red,
-                              )
-                          );
-                        }
-                        else if(email != validEmail || password != validPassword){
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text("email or password not valid"),
-                                backgroundColor: Colors.red,
-                              )
-                          );
-                        }
-                        else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text("Success"),
-                                backgroundColor: Colors.green,
-                              )
-                          );
-                        }
+                    child: AppButton(
+                        onTap: () {
+                      FocusScope.of(context).unfocus();
+                      final email = emailController.text.trim();
+                      final password = passwordController.text.trim();
+                      print("email :: $email pass :: $password");
+                      if(email.isEmpty || password.isEmpty){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("email and password must be not empty"),
+                              backgroundColor: Colors.red,
+                            )
+                        );
+                      }
+                      else if(email != validEmail || password != validPassword){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("email or password not valid"),
+                              backgroundColor: Colors.red,
+                            )
+                        );
+                      }
+                      else{
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Success"),
+                              backgroundColor: Colors.green,
+                            )
+                        );
+                      }
 
-                      },
-                      child: Text('Continue'),
-                    ),
+                    }, btnText: "Login")
                   ),
                 ),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Signupscrn()));
-                    }, child: Text("Sign up")),
+                    Expanded(
+                      child: AppButton(
+                        onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> Signupscrn()));
+                      }, btnText: "Sign up", isOutline: true,),
+                    )
+
                   ],
                 ),
               ],

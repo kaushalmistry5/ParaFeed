@@ -95,9 +95,9 @@ class CustomTextField extends StatelessWidget {
           alignLabelWithHint: true,
           counterText: "",
           hintText: hintText,
-          hintStyle: regularTextStyle(color: textMuted, fontSize: 12),
+          hintStyle: regularTextStyle(color: textMuted, fontSize: 14),
           labelStyle: regularTextStyle(
-              color: secondaryLighter, fontSize: 12),
+              color: secondary, fontSize: 14),
           filled: true,
           fillColor: Colors.white,
           errorText: errorText,
@@ -136,8 +136,8 @@ class CustomTextField extends StatelessWidget {
                     onClickPrefix!();
                   }
                 },
-                size: Size(18, 18),
-                color: textMuted
+                size: Size(24, 24),
+                color: Colors.black.withValues(alpha: 0.38)
             ),
           ) : null,
           prefix: prefix,

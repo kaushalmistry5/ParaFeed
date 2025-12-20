@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 3),(){
-      //Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
     });
 
     super.initState();
@@ -33,11 +33,10 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
+            spacing: 10,
             children: [
-              Container(
-                  color: Colors.red,
-                  child: CustomWidgets.customIcon(iconData: AppIcons.appLogo,size: Size(50,50),)),
-              Text("ParaFeed", style: mediumTextStyle(fontSize: 48,color: primary),)
+              CustomWidgets.customIcon(iconData: AppIcons.appLogo,size: Size(80,80),),
+              Text("ParaFeed", style: mediumTextStyle(fontSize: 44,color: primary),)
             ],
           )
         ),
