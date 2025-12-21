@@ -8,7 +8,7 @@ class NewsProvider extends ChangeNotifier {
   List<Articles> articles = [];
   bool isLoading = false;
   int page = 1;
-  String currentQuery = "tech";
+  String currentQuery = "paranormal";
 
   Future<void> loadNews({String? query, bool loadMore = false}) async {
     if (isLoading) return;
