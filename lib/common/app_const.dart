@@ -1,17 +1,27 @@
 class AppConst {
-  //utsav newskey
-  static const String newsApi = "cee9e023654a48d386d2c887a2b163ae";
 
+  static const String newsApi = "534ba7ab9e1742a38d5cb6fc1742dcf7";
   static const List<String> paranormalCategories = [
     "UFO",
     "Aliens",
     "Humanoids",
     "Ghosts",
     "Conspiracy",
-    "Cryptids"
+    "Cryptids",
   ];
 
-  List<String> extractParanormalTags(String text) {
+
+  static const Map<String, String> paranormalCategoryQuery = {
+    "UFO": "Paranormal",
+    "Aliens": "Paranormal",
+    "Humanoids": "humanoid sightings OR strange humanoid",
+    "Ghosts": "ghost OR haunting OR paranormal activity",
+    "Conspiracy": "paranormal conspiracy OR secret experiment",
+    "Cryptids": "cryptid OR bigfoot OR skinwalker OR loch ness",
+  };
+
+
+  static List<String> extractParanormalTags(String text) {
     final keywords = {
       "ufo": "UFO",
       "alien": "Alien",
@@ -38,5 +48,4 @@ class AppConst {
 
     return tags;
   }
-
 }

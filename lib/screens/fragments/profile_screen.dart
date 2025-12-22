@@ -154,7 +154,7 @@ class ProfileScreen extends StatelessWidget {
                 height: 50,
                 child: AppButton(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Signupscrn()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUpScreen()));
                   }, btnText: "Log Out", isOutline: true,),
               ),
             ),

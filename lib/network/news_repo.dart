@@ -7,12 +7,19 @@ import 'package:parafeed/network/models/news_data_response.dart';
 class NewsRepo {
   static const String _baseUrl = "https://newsapi.org/v2/everything";
 
-  Future<List<Articles>> fetchNews({required String query})
+  Future<List<Articles>> fetchNews({
+    required String query,
+    required int page,
+  })
   async {
     print("api calling start");
 
+    // final url = Uri.parse(
+    //   "$_baseUrl?q=$query&sortBy=popularity&apiKey=${AppConst.newsApi}",
+    // );
+    print("my query is $query");
     final url = Uri.parse(
-      "$_baseUrl?q=$query&sortBy=popularity&apiKey=${AppConst.newsApi}",
+      "$_baseUrl?q=$query&sortBy=publishedAt&page=$page&pageSize=10&apiKey=${AppConst.newsApi}",
     );
 
     final response = await http.get(url);
