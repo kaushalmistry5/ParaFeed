@@ -26,7 +26,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  // SIMPLE EMAIL VALIDATION
   bool isValidEmail(String email) {
     final emailRegex =
     RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');

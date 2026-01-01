@@ -224,27 +224,6 @@ class _FeedsScreenState extends State<FeedsScreen> {
                               ),
                             ),
                           );
-                          //TODO news card create here and take data using value.articles[index]
-                          // return Card(
-                          //   color: Colors.white,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.all(12.0),
-                          //     child: Column(
-                          //       //create news card here
-                          //       children: [
-                          //         Container(
-                          //           width: double.infinity,
-                          //           height: 300,
-                          //           child: Image.network(
-                          //             value.articles[index].urlToImage ?? "",
-                          //             fit: BoxFit.cover,
-                          //           ),
-                          //         ),
-                          //         Text(value.articles[index].title ?? ""),
-                          //       ],
-                          //     ),
-                          //   ),
-                          // );
                     }
                       ),
                   );
