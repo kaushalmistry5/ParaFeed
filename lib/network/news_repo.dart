@@ -14,7 +14,6 @@ class NewsRepo {
   async {
     print("api calling start");
 
-    // final url = Uri.parse(
     print("my query is $query");
     final url = Uri.parse(
       "$_baseUrl?q=$query&sortBy=publishedAt&page=$page&pageSize=10&apiKey=${AppConst.newsApi}",
